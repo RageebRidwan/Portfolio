@@ -275,11 +275,31 @@ export default function Research() {
                 key={edu.degree}
                 style={{
                   background: "var(--bg-card)",
-                  border: "0.5px solid var(--border-subtle)",
+                  border: `0.5px solid ${edu.status === "ongoing" ? "var(--accent-border)" : "var(--border-subtle)"}`,
                   borderRadius: "10px",
                   padding: "20px 24px",
                 }}
               >
+                {/* Ongoing badge */}
+                {edu.status === "ongoing" && (
+                  <span
+                    style={{
+                      display: "inline-block",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "9px",
+                      color: "var(--accent)",
+                      background: "var(--accent-dim)",
+                      border: "0.5px solid var(--accent-border)",
+                      padding: "2px 8px",
+                      borderRadius: "3px",
+                      letterSpacing: "0.08em",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    ONGOING
+                  </span>
+                )}
+
                 <p
                   style={{
                     fontSize: "14px",
@@ -301,20 +321,24 @@ export default function Research() {
                   {edu.institution}
                 </p>
                 <div
-                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                  style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap" }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "10px",
-                      color: "var(--accent)",
-                    }}
-                  >
-                    {edu.grade}
-                  </span>
-                  <span style={{ color: "var(--border-subtle)", fontSize: "10px" }}>
-                    |
-                  </span>
+                  {edu.grade && (
+                    <>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "10px",
+                          color: "var(--accent)",
+                        }}
+                      >
+                        {edu.grade}
+                      </span>
+                      <span style={{ color: "var(--border-subtle)", fontSize: "10px" }}>
+                        |
+                      </span>
+                    </>
+                  )}
                   <span
                     style={{
                       fontFamily: "var(--font-mono)",
